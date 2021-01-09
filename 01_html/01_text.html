@@ -1,0 +1,103 @@
+<!-- emmet기능 사용하기 -->
+<!-- 자동완성 기능을 emmet이라고 한다.  
+왠만한 에디터들 모두 지원하고 있음.
+! 입력하고 탭 치면 자동으로 입력됨. 
+또한, 태그 이름만 입력하고 탭 쳐도 자동 완성 됨.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text</title>
+</head>
+<body>
+    <h1>Text관련태그</h1>
+    <hr><!--수평선 긋기-->
+    <ol>
+        <!--현재 디렉토리의 파일을 찾아라-->
+        <!--상대주소 : ./01_text.html -->
+    <a href="index.html">index.html</a>
+    <!--a 태그는 링크 역할을 하는 역할-->
+    <!--href는 연결할 파일의 주소로 연결해주는 
+    하이퍼 텍스트 역할을 한다.-->
+    </ol>
+
+    <!-- 헤더(머릿글) 태그 -->
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+    <!-- h$*6 emmet-->
+    <!-- h${제목$}*6 -->
+    <!-- html에서는 개행 또는 여러 공백문자는 모두 하나의 공백 문자로 취급한다. -->
+    <!--문단태그-->
+    <!-- lorem ipsum : 채우기 텍스트 -->
+    <!--p>lorem -->
+    <!-- p>lorem*3 -->
+    <!-- &nbsp; : 공백문자, <br> : 개행문자 -->
+    <p>Lorem &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipsum dolor sit amet consectetur adipisicing elit. Dolores iste, soluta vero quam dolorem sit suscipit amet, voluptatum iure debitis eaque expedita. Asperiores, beatae debitis praesentium possimus ipsum 
+        <br><br> accusantium dolorem.</p>
+    <p>Suscipit, obcaecati dolores. Voluptatibus laboriosam tenetur, aperiam fugiat maxime exercitationem nisi voluptates, hic nesciunt neque distinctio blanditiis quisquam velit quibusdam quis sapiente quia rem pariatur totam earum possimus quidem eos?</p>
+    <p>Est ex nulla ea nostrum ut, perspiciatis assumenda repudiandae deserunt tempore quam vel beatae sint, omnis ipsa inventore natus fugiat aliquid deleniti ad, minus ratione! Aut saepe dolores modi dignissimos?</p>
+    <!-- (p>lorem)*3 -->
+
+    <!-- 특수문자 -->
+    <!-- "특수문자" & <tag> -->
+    <p>"특수문자" & <tag></tag></p>
+    <!--위는 <tag>를 태그로 인식함. 직접 출력하기 위해서는 아래와 같이 사용-->
+    <p>"특수문자" & &lt;tag&gt;</p>
+    <p>&quot;특수문자&quot; &amp; &lt;tag&gt;</p>
+    
+    <p>안녕하세요. 반갑습니다.</p>
+    <p>안녕하세요. 반갑습니다.</p>
+    <p>안녕하세요. 반갑습니다.</p>
+    
+    <!--phrase tag : 정보의 추가적인 기능이 더해진 태그-->
+    <!-- semmantic tag(의미있는) -->
+    <em>기울여서 문자를 강조(emphasized)</em>
+    <strong>굵게 bold체로 강조</strong>
+    <del>취소선</del>
+    <mark>형광펜효과를 부여하는 태그</mark>
+    <ins>밑줄을 추가</ins>
+
+    <!--abbreviation 축약형-->
+    <br>
+    <mark><abbr title="Internet Of Things">IoT</abbr>는 각종 사물에 센서와 통신 기능을 내장하고 있습니다.</mark>
+    <br>
+
+    <!-- 인용구 -->
+    <blockquote cite="http://iei.or.kr">소 잃고 외양간 고치다</blockquote>는 말이 있습니다.
+    
+    <!-- 내부의 내용이 코드라는 것을 전달함. -->
+    <code>
+        <pre> <!--작성한 내용을 그대로 시각화 한다.
+                  개행, 공백문자를 유지-->
+    public class Hello World{
+
+    }
+        </pre>
+    </code>
+
+    <!--
+        태그의 종류
+        1. inline요소 : 태그 다음에 개행되지 않음. span, del, em, strong, ...
+        2. block요소 : 태그 다음에 개행됨. h1, p, div, ...
+    -->
+    
+    <!-- 크롬 브라우져에서 F12 누르면 실제 코드를 통해 분석이 가능하다.-->
+    <!-- inline 요소인지 block 요소인지도 확인이 가능-->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
