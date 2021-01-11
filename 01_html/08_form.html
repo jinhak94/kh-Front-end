@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Form</h1>
+    <!-- action 제출할 서버측 url -->
+    <!-- method 전송방식 GET(사용자 입력값이 url에 노출)/POST(사용자 입력값이 노출되지 않음) -->
+
+    <form action="" method="GET">
+        <label for="userName">아이디 : </label>
+        <input type="text" id="userName" name="user-Name">
+        <!-- id : 페이지 내에서 태그의 식별자 -->
+        <!-- name : 서버 전송 시 키값으로 사용됨 
+        GET 방식에서 url에 name이 찍히는 것을 확인할 수 있음.-->
+
+        <br>
+        <label for="password">비밀번호 :</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="전송">
+    </form>
+
+    <!-- <form action="" method="POST">
+        <label for="userName">아이디 : </label>
+        <input type="text" id="userName" name="userName">
+        <br>
+        <label for="password">비밀번호 :</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="전송">
+    </form> -->
+
+    <!-- method 안 쓰면 GET -->
+    <form action="" >
+        <!-- fieldset 폼하위에 그룹핑 할 수 있다. -->
+        <!-- legend fieldset의 제목 제시 -->
+        <!-- maxlength | 최대 입력값 제한-->
+        <!-- placeholder | 입력 전에 미리 입력되어 있는 일종의 가이드, 입력하면 사라짐 -->
+        <!-- value | 미리 입력된 텍스트 -->
+        <!-- readonly | 편집 불가 -->
+        <fieldset>
+            <legend>text관련 input태그</legend>
+            <input 
+                type="text" 
+                name="userId" 
+                id="userId"
+                maxlength="10"
+                placeholder="아이디"
+                value="honggd"
+                readonly
+                style="width:200px; height:20px;">
+            <br>
+            <!-- input:password -->
+            <input type="password" name="password" id="password" placeholder>
+            <br>
+            <!-- input:searcch -->
+            <input type="search" name="search_keyword" id="search_keyword" placeholder="검색어를 입력해주세요.">
+            <br>
+            <!-- required는 필수 속성을 지정. 사용자 입력값이 없다면 제출이 되지 않음. -->
+            <input type="email" name="userEmail" id="userEmail" required>
+            <br>
+            <input type="url" name="homepage" id="homepage" placeholder="홈페이지">
+            <br>
+            <input type="tel" name="userTel" id="userTel" placeholder="전화번호 ">
+            <br>
+
+            <!-- style : none 주면 길이조정 할 수 있는 칸 없어짐. -->
+            <textarea name="memo" id="memo" cols="60" rows="5" placeholder="메모" style="resize: none;">사용자 입력값</textarea>
+        </fieldset>
+        <!--spinbox를 제공-->
+        <fieldset>
+            <legend>number관련 input태그</legend>
+            <input type="number" name="amount" id="amount" 
+            placeholder="수량을 입력하세요." max="10" min="0" step="2"
+            style="width:150px;">
+            <br>
+            <!-- document.getElementById("point").value -->
+            <!-- 위와 같이 개발자 도구의 console에서 javascript로 찾을 수 있다. -->
+            <input type="range" name="point" id="point"
+            max="100" min="0" step="5">
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>날짜시간관련 input태그</legend>
+            <input type="date" name="birthday" id="birthday" value="2000-01-01">
+            <br>
+            <input type="time" name="eta" id="eta" value="20:00">
+            <br>
+            <!-- T는 년월일과 시분초 사이의 구분자 -->
+            <input type="datetime-local" name="reservation" id="reservation"
+                   value="2000-01-01T21:30:15">
+            <!-- iso-8601에서 제시한 수식으로 value 작성 -->
+            <input type="reset" value="초기화">
+            
+        </fieldset>
+        
+        <input type="submit" value="제출">
+    </form>
+    <br>
+    <br>
+
+    <form action="">
+        <fieldset>
+            <legend>선택관련 input태그</legend>
+            <div>
+                <!-- name값으로 그룹핑함 -->
+                성별 : 
+                <input type="radio" name="gender" id="gender-m" value="m">
+                <label for="gender-m">남</label>
+                <input type="radio" name="gender" id="gender-f" value="f">
+                <label for="gender-f">여</label>
+                <!-- radio는 각각에 대해 항상 value값을 지정해야함.
+                그렇지 않으면 on이라고 제출이 되며, 뭐가 선택됐는지 알 수가 없다. -->
+            </div>
+
+            <div>
+                <label for="married">기혼여부 : </label>
+                <input type="checkbox" name="married" id="married">
+            </div>
+
+            <div>
+                취미 : 
+                <input type="checkbox" name="hobby" id="hobby-music" value="music">
+                <label for="hobby-music">음악감상</label>         
+                <input type="checkbox" name="hobby" id="hobby-movie" value="movie">
+                <label for="hobby-movie">영화감상</label>         
+                <input type="checkbox" name="hobby" id="hobby-game" value="game">
+                <label for="hobby-game">게임</label>         
+            </div>
+            <!-- radio는 checked 속성으로 먼저 체크했지만, 
+            select는 selected 속성을 이용해서 미리 체크를 한다.-->
+            <div>
+                <label for="">사이즈 : </label> 
+                <select name="size" id="size">
+                    <option value="S">스몰</option>
+                    <option value="M">미듐</option>
+                    <option value="L" selected>라지</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>기타 input 태그</legend>
+            <label for="color">컬러 : </label>
+            <!-- 16진수값을 서버로 전송한다 -->
+            <input type="color" name="color" id="color" value="#00ff00" disabled>
+            <br>
+            <input type="file" name="upload-file" id="upload-file">
+            <br>
+            <!-- 화면 출력 없이 서버에 전송은 해주는 태그 -->
+            <input type="hidden" name="num" value="1234567890">
+            <!-- disabled 속성 : 화면 노출은 되지만, 값변경/서버전송은 할 수 없다. -->
+        
+            <!-- 버튼을 만드는 2가지 방법 -->
+            <input type="button" value="버튼">
+            <!-- input 태그의 기본 타입은 text이다. -->
+            <!--type=submit | reset 타입은 둘 다 가능 -->
+            <button type="button">버튼2</button>
+            <!-- button 태그의 기본 타입은 submit이므로, 생략시 주의할 것 -->
+        </fieldset>
+        <input type="submit" value="제출">
+    </form>
+</body>
+</html>

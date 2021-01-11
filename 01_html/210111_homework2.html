@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>납품자/납품 정보</title>
+</head>
+<body>
+    <form action="" method="GET">
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <ol>
+                <li>
+                    <label for="delivery-person">납품자명(필수) : </label>
+                    <input type="text" name="delivery-person" id="delivery-person" required>
+                </li>
+                <li>
+                    <label for="email">email(필수) : </label>
+                    <input type="email" name="email" id="email" placeholder="answer@naver.com" required>
+                </li>
+                <li>
+                    <label for="url">홈페이지 : </label>
+                    <input type="url" name="url" id="url" value="http://">
+                </li>
+                <li>
+                    <label for="location">지역 : </label>
+                    <select name="location" id="location" style="width:80px;">
+                        <option value="부산" selected>부산</option>
+                        <option value="인천">인천</option>
+                        <option value="서울">서울</option>
+                    </select>                </li>
+            </ol>
+        </fieldset>
+
+        <fieldset>
+            <legend>납품 정보</legend>
+            <ul>
+                <li>
+                    <label for="product-name">상품명(필수) : </label>
+                    <input type="text" name="product-name" id="product-name" required>
+                </li>
+                <br>
+                <li>
+                    <label for="product-count">납품수량(필수) : </label>
+                    <input type="number" name="product-count" id="product-count" 
+                           placeholder="최소 100." min="100" required>
+                </li>
+                <br>
+                <li>
+                    <label for="product-grade">납품등급(필수) : </label>
+                    <input type="range" name="product-grade" id="product-grade"
+                    max="100" min="0" step="5">
+                </li>
+                <br>
+                <li>
+                    <label for="other">기타사항 : </label>
+                    <textarea name="other" id="other" cols="17" rows="2"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" value="send message">
+    </form>
+</body>
+</html>

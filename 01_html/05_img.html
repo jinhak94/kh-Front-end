@@ -32,6 +32,46 @@
     <br><br>
     <img src="sample/image/forest1.PNG" style="width:30%;" alt="">
 
+    <hr>
+    <!-- 이미지 링크만들기 -->
+    <a href="http://w3schools.com"><img src="sample/image/tower1.PNG" alt="와삼스쿨 사이트 이동하기">
+    </a>
+    <!-- 커서를 포인터로 바꿔준다. -->
+
+    <hr>
+    <!-- 이미지 구역별로 링크 각각 달기 -->
+    <img src="sample/image/flower2.PNG" alt=="" usemap="#mymap">
+    <map name="mymap">
+        <!--coords : coordinaion(좌표)-->
+        <!--(0,0)  (299,429)를 의미함-->
+        <area shape="rect" coords="0,0,299,429" href="https://naver.com" alt="네이버 이동하기">
+        <area shape="rect" coords="299,0,598,429"
+        href="https:/google.com" alt="구글 이동하기">
+    </map>
+
+    <hr>
+    <!-- 이미지 정렬하기 -->
+    <div>
+        <img src="sample/image/flower3.PNG" alt="" style="width:150px; float:left;">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem accusamus nobis veritatis, corporis cupiditate vitae quaerat eaque ratione. Porro impedit dolorem laborum quidem? Qui quod enim repellendus odio quia. Officiis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem esse dignissimos iusto velit quam corporis fugit ab quod accusamus, obcaecati numquam ipsa quo, corrupti sed error architecto aliquam rerum dicta.</p>
+    </div>
+
+    <div>
+        <img src="sample/image/flower3.PNG" alt="" style="width:150px; float:right;">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem accusamus nobis veritatis, corporis cupiditate vitae quaerat eaque ratione. Porro impedit dolorem laborum quidem? Qui quod enim repellendus odio quia. Officiis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem esse dignissimos iusto velit quam corporis fugit ab quod accusamus, obcaecati numquam ipsa quo, corrupti sed error architecto aliquam rerum dicta.</p>
+    </div>
+
+    <div>
+        <!--align 쓰지 말고 
+        style의 float 쓰기-->
+        <img src="sample/image/flower3.PNG" alt="" style="width:150px; float:left;">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem accusamus nobis veritatis, corporis cupiditate vitae quaerat eaque ratione. Porro impedit dolorem laborum quidem? Qui quod enim repellendus odio quia. Officiis.</p>
+        <brstyle="clear:both">
+        <img src="sample/image/flower3.PNG" alt="" style="width:150px; float:right;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem esse dignissimos iusto velit quam corporis fugit ab quod accusamus, obcaecati numquam ipsa quo, corrupti sed error architecto aliquam rerum dicta.</p>
+    </div>
 
 </body>
 </html>
