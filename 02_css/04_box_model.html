@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Box Model</h1>
+        <img src="sample/박스모델속성.png" alt="" style="width: 500px">   
+    </div>
+    <div class="test">내용내용내용</div>
+    
+    <style>
+    .test{
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+        background-color: orangered;
+        padding: 10px 20px 30px 40px; /*top right bottom left*/
+        /* margin: 10px 5px 10px 5px*/
+        margin: 10px 5px; /* 생략이 되었다면, 맞은 편의 값을 가져와서 쓰게 된다. */
+        margin: 10px; /* 모든 값을 하나의 값으로 통일 */
+    /* 362*342가 찍히는 이유 : border*2 + right + left / border*2 + top + bottom */
+    }
+    /* 마진겹침현상 : 둘 중 크 값으로 처리가 된다. */
+    .wrapper{
+        text-align:right;
+        margin-bottom: 50px;
+    }
+    </style>
+
+
+
+    <hr>
+    <div class="border-test"></div>
+    <style>
+        .border-test{
+            width: 300px;
+            height: 300px;
+            background-color: powderblue;
+            margin: 20px auto;
+            border: 2px solid black;
+            /* border-width: 2px;
+            border-style: solid;
+            border-color:black; */
+            border-radius: 10px 20px 30px 40px; /*left-top right-top right-bottom reft-bottom */
+            border-radius: 50%; /* 원이 된다. */
+        }
+    </style>
+
+    <div class="box-shadow border-test">box-shadow</div>
+    <style>
+    .box-shadow:hover{
+        /* h-offset v-offset blur(번짐) spread(그림자 크기) */
+        box-shadow: 5px 5px 10px 3px gray;
+    }
+</style>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Layout</title>
+
+    <style>
+        body{
+            width: 960px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        header{
+            background-color: lightsteelblue;
+            height: 100px;
+            padding: 10px;
+        }
+
+        #menu{
+        list-style:none; /* bullet 제거 */
+        margin-bottom: -10px;
+        }
+        #menu li{
+            /* 요소들을 위의 왼쪽으로 배치하는 방식 */
+            padding: 3px 0;
+            float: right;
+            margin-right: 15px; /* 메뉴 간 공백 */
+            color: blue;
+        }
+        #menu li a{
+            text-decoration: none;
+            font-weight: bold;  /* bold체 */
+        }
+
+        section{
+            background-color:lightskyblue;
+            width: 640px;
+            float:left;
+            padding: 10px;
+        }
+        aside{
+            float:right;
+            width: 280px;
+            height: 1717.12px;
+            padding: 10px;
+            background-color: mediumaquamarine;
+        }
+        footer{
+            background-color: mediumseagreen;
+            clear: both;
+            height: 100px;
+            padding: 10px;
+        }
+
+
+        .img-container{
+            text-align: center;
+        }
+        .img-container img{
+            width: 500px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h1>HTML5 Layout</h1>
+
+    <header>
+        <h1>header</h1>
+        <!-- 과제1. 헤더의 오른쪽 하단에다가 가로로 위치하게  -->
+        <nav>
+            <ul id = "menu">
+                <li><a href="#">htmlS</a></li>
+                <li><a href="#">css3</a></li>
+                <li><a href="#">javascript6</a></li>
+                <li><a href="#">jquery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>
+            <p>semantic tag란? 태그의 의미와 알맞게 내용을 구성해야 한다.</p>
+            <ul>
+                <li>header : 사이트 전체의 헤더, article태그의 헤더</li>
+                <li>nav : 네비게이션 표현, header하위/aside하위/footer하위</li>
+                <li>article : 본문내용, 독립적으로 표현 가능한 단위</li>
+                <li>section : 연관된 컨텐츠를 그룹핑 하는 용도. article하위, 여러 article을 묶는 용도</li>
+            </ul>
+        
+            <div class="img-container">
+                <img src="sample/html5/article_section1.jpg" alt="">
+                <img src="sample/html5/html5-2.jpg" alt="">
+                <img src="sample/html5/html5-elements.png" alt="">
+            </div>
+        
+        </article>
+    </section>
+    <aside>
+        <h1>aside</h1>
+    </aside>
+    <footer>
+        <h1>footer</h1>
+    </footer>
+</body>
+</html>

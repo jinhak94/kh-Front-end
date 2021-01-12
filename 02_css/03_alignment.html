@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬</title>
+</head>
+<body>
+    <h1>정렬</h1>
+    <!-- inline 요소와 block 요소의 정렬 방법이 다르다. -->
+    <ul>
+        <li>inline요소 정렬하기</li>
+            <!-- inline요소는 직접 정렬할 수 없고,
+            부모 block요소에서 text-align 속성을 이용해
+            자식 inline 요소를 정렬한다. -->
+            <ul>
+                <li>부모 block 요소에서 text-align 속성을 이용해 자식 inline 요소를 정렬</li>
+                <li>img, span 등의 inline 요소</li>
+                <li>h1, p 태그의 내부 text가 정렬</li>
+            </ul>
+            <!-- 0은 위아래 마진값을 의미하고 auto는 좌우를 똑같이 만들라는 뜻임. -->
+        <li>block요소 정렬하기 : 태그 자신에게 너비와 margin값을 활용한다. margin: 0 auto;</li>
+    </ul>
+
+    <div class="wrapper">
+        <img src="sample/image/flower1.PNG" alt="숲사진1">
+        <br>
+        <span>안녕하세요.</span><span>hello world</span>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia fugit necessitatibus id sed rerum animi qui, magnam blanditiis facere accusamus, impedit quo excepturi similique optio ipsam iste iure harum quaerat!</p>
+        <div class="inner">ㅋㅋㅋ</div>
+    </div>
+    <style>
+        .wrapper img{
+            width: 150px;
+        }
+        .wrapper{
+            border: 2px solid black;
+            text-align:right;
+        }  
+        .wrapper .inner{
+            width:100px;
+            height:100px;
+            background-color: mediumvioletred;
+            /* margin: 0 auto; */
+            margin-left:auto; /*화면 전체에서 자신의 너비를 뺀 수치 */
+            margin-left: 100%;
+        }
+    </style>
+
+</body>
+</html>
+
+
+
+
+

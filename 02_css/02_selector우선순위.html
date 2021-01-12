@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>선택자 우선순위</h1>
+    <ol>
+        <li>!important</li>
+        <li>inline style 속성 style="width:100px;"</li>
+        <li>아이디 선택자 #myid</li>
+        <li>클래스 선택자 .test</li>
+        <li>계층선택자 div > p</li>
+        <li>태그선택자 p</li>
+        <li>모든 선택자 *</li>
+        <li>가상선택자:checked</li>
+        <li>속성[type=text]</li>
+    </ol>
+    <div id="mydiv" class="mycls" style="background:magenta;">우선순위테스트</div>
+    <style>
+        #mydiv{
+            background:lightsalmon !important;
+        }
+        .mycls{
+            background: lightgreen;
+        }
+        div{
+            background: lightgray;
+        }
+    </style>
+
+</body>
+</html>
