@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>갤러리 만들기</title>
+  <style>
+
+      /*  */
+      #gallery{
+          background-color: black;
+          width: 500px;
+          height:250px;
+          margin: 0 auto;
+          padding: auto;
+          text-align: center;
+      }
+
+      #gallery ul{
+          padding-left: 0;
+      }
+
+      .line1{
+        margin-top:30px;
+        display:inline-block;
+        width: 450px;
+        height: 100px;
+      }
+
+      .line2{
+          display:inline-block;
+          width: 450px;
+          height:100px;
+      }
+
+      /* 점 제거 밑 한 줄로 배치*/
+      .line1 li{
+          float:left;
+          margin-right:15px;
+          list-style: none;
+      }
+
+      .line2 li{
+          float:left;
+          margin-right: 15px;
+          list-style: none;
+      }
+
+      /* 띄워줄 이미지 */
+      .pic{
+          display: none;
+          z-index: 99999999;
+          border:2px solid;
+          border-color: black;
+      }
+      /* 호버했을 때, */
+      .line1 li:hover > .pic{
+          left:93px;
+          top:65px;
+          display:block;
+      }
+
+      .line2 li:hover > .pic{
+          left:93px;
+          top:65px;
+          display:block;
+      }
+
+      .first{
+          margin-left: 27px;
+      }
+
+      .pos-relative{
+          position: relative;
+      }
+
+      .pos-absolute{
+          position: absolute;
+      }
+
+  </style>
+
+ </head>
+ <body>
+  <h2>사진 갤러리 만들기</h2>
+  <hr/>
+  <div id="gallery">
+	  <ul>
+		  <div class="line1">
+            <li class="first pos-relative"> 
+                <img src="sample/image/flower1.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower1.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>
+            <li class="pos-relative">
+                <img src="sample/image/flower2.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower2.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>
+            <li class="pos-relative">
+                <img src="sample/image/flower3.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower3.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>   
+          </div>
+          <div class="line2">
+            <li class="first pos-relative">
+                <img src="sample/image/flower4.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower4.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>
+            <li class="pos-relative">
+                <img src="sample/image/flower5.png" class="small" width="120" height="90">
+                <img src="sample/image/flower5.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>
+            <li class="pos-relative">
+                <img src="sample/image/forest1.png" class="small" width="120" height="90">
+                <img src="sample/image/forest1.png" class="pic pos-absolute" width="200" height="180"> 
+            </li>
+          </div>
+	  </ul>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text</title>
+</head>
+<body>
+    <h1>Text</h1>
+    <div class="wrapper">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptas tempore commodi corrupti aperiam tenetur ea necessitatibus numquam eum nobis ipsa nemo ipsam optio dolores voluptatum, officia dolorem? Blanditiis, neque!</p>
+        <p>Incidunt aut corporis cupiditate vitae ut sapiente dolorem sunt dolor? Exercitationem hic dolor numquam quisquam, porro ullam nam delectus doloribus quod tempore, nihil nostrum blanditiis assumenda modi, sapiente eaque atque!</p>
+        <p>Aut sit repellat reiciendis, aperiam, earum provident error consequuntur culpa aspernatur odio, animi accusamus. Quos, sed illo placeat ipsam inventore fugiat maiores eos libero animi perferendis nihil mollitia voluptatem nemo.</p>
+        <p>Nisi eius possimus quae velit quis amet minus repellendus. Earum enim quasi maiores harum atque nemo, et dolor illo nulla soluta nesciunt, nihil, similique officia tempora ipsum magni id error.</p>
+        <p>Eveniet, accusantium animi obcaecati odit, earum facere eum quod vero voluptate eos itaque quaerat rerum unde dolore nesciunt repudiandae enim error ullam labore libero quisquam voluptatum voluptatem. Eveniet, voluptate consequatur.</p>
+    </div>
+    <style>
+        /* 맨 첫 번째 글자 */
+        .wrapper p::first-letter{
+            font-size: 2em;
+        }
+        /* counter */
+        .wrapper{
+            counter-reset : num; /* 카운터 변수 */
+        }
+        /* 맨 앞에 삽입 */
+        .wrapper p::before{
+            /* content: '🤞'; */
+            counter-increment: num;
+            content: counter(num) ". ";
+        }
+        /* 맨 뒤에 삽입 */
+        .wrapper p::after{
+            content: '😊'; /*window키 + .을 누르면 이모지에서 제공하는 이모티콘 나옴*/ 
+        }
+        .wrapper p::selection{
+            background-color: hotpink;
+            color: white;   
+        }
+        .wrapper p{
+            /* 줄의 위아래 간격 */
+            line-height: 30px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <h1>Table</h1>
+
+    <table>  
+        <thead>
+            <tr>
+                <th>브라우저명</th>
+                <th>제조사</th>
+                <th>홈페이지</th>
+            </tr>
+        </thead>
+        <!-- tr>td*3 -->
+        <tbody>
+            <tr>
+                <td>Edge</td>
+                <td>MicroSoft</td>
+                <td><a href="https://microsoft.com">https://microsoft.com</a></td>
+            </tr>
+            <tr>
+                <td>Chrome</td>
+                <td>Google</td>
+                <td><a href="https://google.com">https://google.com</a></td>
+            </tr>
+            <tr>
+                <td>Safari</td>
+                <td>Apple</td>
+                <td><a href="https://apple.com">https://apple.com</a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <!-- colspan : 3개의 행을 하나로 합쳤다는 뜻 -->
+                <td colspan="3">총 브라우져 수 : 3개</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <style>
+        table{
+            border: 1px solid black;
+            /* 테이블의 사이 공간을 없앰. */
+            border-collapse:collapse;
+            width: 500px;
+            height: 300px;
+
+        }
+        th, td{
+            padding: 10px 0;
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: top;
+        }
+    </style>
+
+    <h2>table이 아닌 요소의 수직 정렬</h2>
+    <div class="test">
+        <span>안녕</span>
+    </div>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            margin: 10px auto;
+            text-align: center;
+            display:table;
+        }
+        .test span{
+            display:table-cell;
+            vertical-align: middle;
+        }
+        /* vertical-align은 table에만 존재하므로, 
+        다른 요소에서 이를 표현하기 위해서는
+        부모 요소에 display:table을 지정해주고,
+        자식 요소에 display:table-cell을 지정한 다음
+        vertical-align을 표현하고자 하는 자식 요소에 적용해주면 된다. */
+    </style>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

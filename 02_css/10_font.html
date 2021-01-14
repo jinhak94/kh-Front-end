@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Waiting+for+the+Sunrise&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'BMEuljiro10yearslater';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/BMEuljiro10yearslater.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Font</h1>
+    <p>기본크기 : 16px(절대값), 1em(상대값), 100%(상대값)</p>
+    <ul>
+        <li>
+            <p id="font1">가나다라마바사 abcdefg 1234567890</p>
+        </li>
+        <li>
+            <p id="font2">가나다라마바사 abcdefg 1234567890</p>
+        </li>
+        <li>
+            <p id="font3">가나다라마바사 abcdefg 1234567890</p>
+        </li>
+    </ul>
+    <style>
+        
+        body{
+            /* 앞쪽으로부터 구체적인 것 적고,
+            뒤로 갈수록 보편적인 폰트 지정 */
+            font-family : 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        
+        #font1{
+            /* 없는 것은 무시됨. 홍길동체 무시
+             휴먼모음T가 있으면 쓰고, 없으면 궁서체 사용             */
+            font-family : "홍길돌체", "휴먼모음T", "궁서체";
+            font-size: 30px;
+            font-weight: bold;
+        }
+        #font2{
+            /* google font 지정 */
+            font-family : 'Mountains of Christmas', cursive;
+            /* body의 font-size를 20px로 바꾼 이후는 이를 기준으로 잡아서 40px */
+            font-size: 2em; /* 기본 16px의 2배 32px */
+            font-style:italic;
+        }
+        #font3{
+            /* google font 지정 */
+                        /* body의 font-size를 20px로 바꾼 이후는 이를 기준으로 잡아서 30px */
+            /* font-family: 'Sofia', 'BMEuljiro10yearslater', cursi;
+            font-size: 150%; /*기본값이 16px이므로 24px**/ 
+            /* 위를 아래와 같이 font로 한 번에 쓸 수도 있다.
+            대신, font를 hover해보면 작성 순서가 나온다. 이에 맞춰서 작성할 것. */
+            font: italic 150% 'Sofia', 'ELAND-NICE-M', cursive;
+        }
+
+    </style>
+</body>
+</html>

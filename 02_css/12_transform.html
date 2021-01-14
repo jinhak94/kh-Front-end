@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform</title>
+</head>
+<body>
+    <h1>Transform</h1>
+    
+    <div class="wrapper">
+        <img src="/sample/image/flower1.PNG" alt="">
+    </div>
+    <style>
+        .wrapper{
+            text-align: center;
+        }
+        /* 상태 A */
+        /* .wrapper img{
+            width: 250px;
+        } */
+        /* 상태 B */
+        /* .wrapper img:hover{
+            width: 350px;
+            /* transform: translate(-50px, 100px);*/
+            /* transform: scale(2, 2); */
+            /* 회전 */
+            /* 양수 : 시계, 음수 : 반시계 */
+            /* transform : rotate(-90deg);  */
+        /* }     */
+
+        /* vendor prefix 브라우져별 접두어  */
+        /* 최신 버젼을 지원하지 않는 브라우져의 속성 지원을 위해서
+        vendor사 별 접두사를 작성  */
+        .wrapper img:hover{
+            -webkit-transform: translateX(10px); /* 크롬, 사파리*/
+            -o-transform: translateX(10px); /* 오페라 */
+            -moz-transform: translateX(10px); /* 파이어폭스 */
+            -ms-transform: translateX(10px); /* IE */
+            transform: translateX(10px);
+        }
+
+    </style>
+
+
+</body>
+</html>

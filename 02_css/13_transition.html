@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+</head>
+<body>
+    <h1>Transition</h1>
+    <div class="test"></div>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background-color: lawngreen;
+            border: 1px solid #000; /*각 자리수 반복 123의 경우 112233*/
+            transition-duration: .5s;
+            transition-property: all; /* 기본값 */
+            transition-delay: .1s;
+            transition-timing-function: ease;
+        }
+        .test:hover{
+            width:200px;
+            height:200px;
+            transform: translate(50px, 0) rotateX(90deg)
+                    rotateY(90deg);
+        }
+    </style>
+
+    <h1>Animation</h1>
+    <div class ="animation"></div>
+    <style>
+        .animation{
+            width: 120px;
+            height: 120px;
+            background-color: hotpink;
+            border: 3px solid gray;
+        }
+
+        .animation:hover{
+            animation-name: my-keyframe;
+            animation-duration: 2s;
+            /* 반복횟수 2번 */
+            animation-iteration-count: 2;
+            /* 무한대 */
+            animation-iteration-count: infinite;
+            /* 왔다갔다 */
+            animation-direction: alternate;
+        }
+    @keyframes my-keyframe{
+       25%{
+            transform: translate(100px, 0) /* 기본상태 기준으로 작성 */
+       } 
+       50%{
+            transform: translate(100px, 100px) rotate(360deg);
+       }
+       75%{
+           transform: translate(0px, 100px);
+       }
+       100%{
+            transform: translate(0px, 0px);
+            background-color: lightgreen;
+       }
+    }
+    </style>
+
+</body>
+</html>

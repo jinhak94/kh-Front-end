@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+</head>
+<body>
+    <h1>Position</h1>
+    <!-- dl>(dt+dd)*4 -->
+    <dl>
+        <dt>static</dt>
+        <dd>기본값. 문서 내에 작성된 순서대로 화면 배치. offset(top | right | bottom | left) 값 무시.</dd>
+        <dt>relative</dt>
+        <dd>static처럼 문서 내에 작성된 순서대로 화면 배치되지만, offset을 적용 가능.</dd>
+        <dt>absolute</dt>
+        <dd>기준이 되는 부모요소(position:static이 아닌 가장 가까운 부모)로부터 offset값을 적용.</dd>
+        <dt>fixed</dt>
+        <dd>viewport 기준으로 offset값 적용</dd>
+    </dl>
+    <h2>static</h2>
+    <!-- div.outer>.first+.second+.third -->
+    <div class="outer">
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+    </div>
+    <style>
+        .outer{
+            background-color: gainsboro;
+        }
+        .first{
+            width:300px;
+            height:300px;
+            background:yellow;
+        }
+        .second{
+            width:200px;
+            height:200px;
+            background:yellowgreen;
+            top: 50px;
+            left: 50px;
+        }
+        .third{
+            width:100px;
+            height:100px;
+            background:greenyellow;
+            top:100px;
+            left: 100px;
+        }
+    </style>
+
+    <h2>relative</h2>
+
+    <div class="outer">
+        <div class="first"></div>
+        <div class="second pos-relative"></div>
+        <div class="third pos-relative"></div>
+    </div>
+    <style>
+        .pos-relative{
+            position: relative;
+        }
+    </style>
+
+    <h2>absolute</h2>
+    <!-- <div class="outer"> -->
+    <!-- 기준이 되는 부모를 설정하기 위해 outer를 부모로 지정.
+    부모로 지정하기 위해선 position이 relative여야 한다.
+    가장 가까운 position: relative를 찾는다.
+    static이면 처리되지 않음. -->
+    <div class="outer pos-relative">
+        <div class="first"></div>
+        <div class="second pos-absolute"></div>
+        <div class="third pos-absolute"></div>
+    </div>
+    <style>
+        .pos-absolute{
+            /* 기준이 되는 부모를 지정하기 않았기 때문에, 
+            부모 요소는 최상단의 body가 되고, body 기준으로 처리가 됨. */
+            position: absolute;
+        }
+    </style>
+    
+    <h2>fixed</h2>
+    <div class="pos-fixed"></div>
+    <style>
+        .pos-fixed{
+            /* 화면에 고정된다. */
+            position: fixed;
+            background-color: hotpink;
+            width: 100px;
+            height: 100px;
+            right : 10px;
+            top: 10px;
+        }
+    </style>
+
+    <h2>z-index</h2>
+    <p>요소를 z축 기준으로 쌓는 속성. position:static일 때 사용 불가</p>
+    <!-- div.wrap>.z-test.z-test${요소$}*3 -->
+    <div class="wrap">
+        <div class="z-test z-test1">요소1</div>
+        <div class="z-test z-test2">요소2</div>
+        <div class="z-test z-test3">요소3</div>
+    </div>
+    <style>
+        .wrap{
+            position: relative;
+        }
+        .z-test{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            position: absolute;
+        }
+        /* z-index가 큰 값을 가질수록, 위쪽(사용자 쪽)으로 올라온다. */
+        .z-test1{
+            background-color: hotpink;
+            z-index:10;
+            /* 절대 다른 요소에 의해 가려지면 안되는 경우 
+            아래와 같이 하기도 함. */
+            /* z-index: 99999999; */
+        }
+        .z-test2{
+            background-color: greenyellow;
+            top: 20px;
+            left: 20px;
+            z-index:9;
+        }
+        .z-test3{
+            background-color: skyblue;
+            top: 40px;
+            left: 40px;
+            z-index:8;
+        }
+        
+    </style>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<body>
+    <h1>display</h1>
+    <h2>block element</h2>
+    <p>inline-block일 때는 block처럼 width/height값을 가지며,
+        inline처럼 한 줄로 배치된다.
+    </p>
+    <!-- div.test.test${div$}*5 -->
+    <!-- <div class="test test1 inline">div1</div>
+    <div class="test test2 inline">div2</div>
+    <div class="test test3 inline">div3</div>
+    <div class="test test4 inline">div4</div>
+    <div class="test test5 inline">div5</div> -->
+    <div class="test test1 inline-block">div1</div>
+    <div class="test test2 inline-block">div2</div>
+    <div class="test test3 inline-block">div3</div>
+    <div class="test test4 inline-block">div4</div>
+    <div class="test test5 inline-block">div5</div>
+
+<style>
+        .test{
+            width:100px;
+            height:100px;
+            border: 1px solid black;
+        }
+        
+        .test1{background-color: rebeccapurple;}
+        .test2{background-color: plum;}
+        .test3{background-color: pink;}
+        .test4{background-color: salmon;}
+        .test5{background-color: wheat;}
+
+        /* inline 요소인 span를 block처럼 사용할 수 있게 함. */
+        .block{
+            display: block;
+        }
+
+        /* block 요소인 div를 inline처럼 사용할 수 있게 함. */
+        .inline{
+            display:inline;
+        }
+
+        /* display의 width와 height를 가지는 특성은 유지하고,
+        가로 배치를 하기 위해서 사용하는 방법. hybrid. */
+        .inline-block{
+            display:inline-block;
+        }
+    </style>
+
+    <h2>inline element</h2>
+    <p>width, height 속성이 무시되고, 컨텐츠 영역에 의해 결정된다.</p>
+    <!-- inline 요소는 width와 height 값이 먹지 않는다. -->
+    <span class="test test1 block">span1</span>
+    <span class="test test2 block">span2</span>
+    <span class="test test3 block">span3</span>
+    <span class="test test4 block">span4</span>
+    <span class="test test5 block">span5</span>
+    
+    <h2>안보임처리</h2>
+    <ul>
+        <li>display: none</li>
+        <li>visibility: hidden</li>
+        <li>opacity: 0</li>
+    </ul>
+    <div class="test test1 not">test1</div>
+    <div class="test test2 impact   ">test2</div>
+    <style>
+        .not{
+            /* 공간차지여부 */
+            /* display:none; */
+            /* visibility: hidden; */
+            opacity: .5; /* 앞에가 0일 때는 생략 가능 */
+        }
+        .impact{
+            opacity: .7;
+        }
+        .impact:hover{
+            opacity: 1;
+        }
+    </style>
+    
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
