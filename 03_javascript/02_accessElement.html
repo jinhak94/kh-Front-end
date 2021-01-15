@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 접근하기</title>
+</head>
+<body>
+    <h1>요소 접근하기</h1>
+    <ul>
+        <li class="odd">테스트1</li>
+        <li class="even">테스트2</li>
+        <li id="test3" class="odd">테스트3</li>
+        <li class="even">테스트4</li>
+        <li class="odd">테스트5</li>
+    </ul>
+
+    <input type="button" value="실행" onclick="test1();" style="margin: 10px;">
+
+    <script>
+        function test1(){
+            // DOM
+            // 문서가 브라우져에 의해 해석될 때,
+            // HTML 태그는 자바 스크립트 객체 모델로 저장된다.
+            // var e1 = document.getElementById("test3");
+            // console.log(e1);
+            // console.dir(e1); // 계층형 구조로 보여줌
+            // console.log(typeof e1);
+            
+            // e1.style.color = "hotpink";
+            
+            //2. 태그명으로 접근
+            // var arr = document.getElementsByTagName("li");  //li태그객체를 유사배열로 반환
+            // console.log(arr);
+            // console.log(typeof arr);
+
+            // for(var i = 0; i < arr.length; i++){
+            //     // console.log(arr[i]);
+            //     arr[i].innerHTML = "으라차차" + (i + 1);
+            //     console.log(arr[i].innerHTML); //태그내부 html을 반환
+            // }
+
+            //3. 클래스명으로 접근
+            var evens = document.getElementsByClassName("even");
+            var odds = document.getElementsByClassName("odd");
+            console.log('짝수');
+            console.log(evens);
+            console.log('홀수');
+            console.log(odds);
+
+            for(var i = 0; i < evens.length; i++){
+                evens[i].style.backgroundColor = "springgreen";
+            }
+            for(var i = 0; i < odds.length; i++){
+                odds[i].style.color = "#ffffff"
+            }
+        }  
+    </script>
+
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+            <ul style="list-style: none; line-height: 30px;">
+                <li>
+                    <input type="checkbox" name="hobby" id="music" value="음악감상">
+                    <label for="music">음악감상</label>
+                    <input type="checkbox" name="hobby" id="movie" value="영화감상">
+                    <label for="music">영화감상</label>
+                    <input type="checkbox" name="hobby" id="book" value="독서">
+                    <label for="music">독서</label>
+                    <input type="checkbox" name="hobby" id="drink" value="음주">
+                    <label for="music">음주</label>
+                </li>
+                <li>
+                    <input type="button" value="확인" onclick="test2();">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+    <script>
+        function test2(){
+            var hobbyArr = document.getElementsByName("hobby");
+            console.log(hobbyArr);
+            console.log(typeof hobbyArr);
+
+            var result = '';
+            for(var i = 0; i < hobbyArr.length; i++){
+                var chk = hobbyArr[i];
+                if(chk.checked){
+                    console.log(chk.value);
+                    result += chk.value + ' ';
+                }
+            }
+            alert(result);
+        }
+    </script>
+
+    <hr>
+    <p>@실습문제 : input#userName의 값을 
+        div#area1에 출력하세요</p>
+
+    <form action="">
+        <label for="userName">이름 입력 : </label>
+        <input type="text" id="userName" name="userName">
+        <input type="button" value="사용자 입력값 확인" onclick="display();">
+    </form>
+
+    <div id="area1" style="width: 500px; height: 300px; background-color:green;"></div>
+
+    <script>
+        function display(){
+            var text = document.getElementById('userName');
+            var div = document.getElementById("area1").innerHTML=text.value;
+            
+            //초기화
+            userName.value = '';
+            //포커스 처리
+            userName.focus();
+        }
+    </script>
+
+
+    <p>@실습문제 : input#point의 값이 변경될때마다 span#pointCheck()에 출력하세요.</p>
+
+    <form action="">
+        <label for="point">점수 입력 : </label>
+                                                                    <!--onchange="point_display()"-->
+        <input type="range" name="point" id="point" min="0" max="100" oninput="point_display();">
+        <span id="pointCheck">0</span>
+    </form>
+
+    <script>
+        function point_display(){
+            var range = document.getElementById('point');
+            var span = document.getElementById('pointCheck').innerHTML=range.value;      
+            // span.innerHTML = point.value();
+        }
+    </script>
+
+    <h2>className 제어하기</h2>
+    <table id="tbl">
+        <tr>
+            <th colspan="3">수강신청</th>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <!-- <input type="checkbox" id="chkAll" onchange="checkAllOrNone();"> -->
+                <!-- 인라인 속성에 사용된 this는 태그객체 자신을 가리킨다. -->
+                <input type="checkbox" id="chkAll" onchange="checkAllOrNone(this);">
+                <label for="chkAll">모두선택/해제</label>
+            </th>
+        </tr>
+        <tr>
+            <!-- (td>input:checkbox[name=subject]+label)*3 -->
+            <!-- <td><input type="checkbox" name="subject" id="kor"  onchange="checkAll();"> -->
+                <td class="font"><input type="checkbox" name="subject" id="kor"  onchange="checkSubject(this);">
+                <label for="kor">국어</label></td>
+            <!-- <td><input type="checkbox" name="subject" id="eng"  onchange="checkAll();"> -->
+                <td class="font"><input type="checkbox" name="subject" id="kor"  onchange="checkSubject(this);">
+                <label for="eng">영어</label></td>
+            <!-- <td><input type="checkbox" name="subject" id="math" onchange="checkAll();"> -->
+                <td class="font"><input type="checkbox" name="subject" id="kor"  onchange="checkSubject(this);">
+                <label for="math">수학</label></td>
+        </tr>
+    </table>
+    <style>
+        table#tbl{
+            border: 1px solid #000;
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        table#tbl th, table#tbl td{
+            border: 1px solid #000;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .subject-checked{
+            background-color: thistle;
+            color:white;
+        }
+        
+        .font{
+            font-family: "궁서체";
+        }
+    </style>
+
+    <script>
+        function checkAllOrNone(){
+            var chkAll = document.getElementById("chkAll");
+            var subjects = document.getElementsByName("subject");
+            console.log(chkAll.checked);
+            for(var i = 0; i < subjects.length; i++){
+                subjects[i].checked = chkAll.checked;
+            }
+        }
+    </script>
+
+    <p>@실습문제 : classList 속성을 이용해서 코드를 개선하세요.</p>
+
+    <!-- 자바스크립트의 this는 악명이 높다. 어디서 사용되냐에 따라 다르다. -->
+    <!-- 매개변수로 받기 -->
+    <script>
+
+        function checkSubject(subject){
+            //부모td에 클래스값 부여하기
+            // console.log(subject);
+            var parentTd = subject.parentElement;
+            console.log(parentTd);
+
+            //체크여부에 따라 클래스값 부여/회수
+            if(subject.checked)
+            // className을 문자열로 처리하기 때문에, 아래에 적지 않으면 전부 날라가버린다.
+            // 따라서 모두 적어줄 필요가 있음.
+                parentTd.className = 'subject-checked font';
+            else
+                parentTd.className = 'font';
+
+            //개별체크박스 전체선택여부확인후 #checkAll에 반영하기
+            var subjects = document.getElementsByName("subject");
+            var cnt = 0;
+            for(var i = 0; i < subjects.length; i++)
+                if(subjects[i].checked)
+                    cnt++;
+
+            var chkAll = document.getElementById("chkAll");
+            chkAll.checked = (cnt == subjects.length);
+        }
+        function checkAllOrNone(chkAll){
+            // var chkAll = document.getElementById("chkAll");
+            var subjects = document.getElementsByName("subject");
+
+            console.log(chkAll);
+
+            for(var i = 0; i < subjects.length; i++){
+                //1. 개별체크박스제어
+                subjects[i].checked = chkAll.checked;
+                console.log(subjects[i]);
+
+                // ClassList가 뭔지 공부하고, 어떻게 개선해야 하는지 확인하기. 
+                //2. 체크박스별 부모td 클래스값 제어
+                subjects[i].parentElement.className = chkAll.checked ? "subject-checked font" : "font";
+            }
+        }
+
+        
+
+        function checkAll(){
+            var chkAll = document.getElementById("chkAll")
+            var subjects = document.getElementsByName("subject");
+
+            // flag와 id 2가지 방식으로 가능
+
+            // var flag;
+            var count = 0;
+            for(var i = 0; i < subjects.length; i++){
+                // if(subjects[i].checked == false){
+                //     flag = true;
+                // }
+                if(subjects[i].checked == true){
+                    count++;
+                }
+            }
+
+            if(count==subjects.length){
+                chkAll.checked = true;
+            }else{
+                chkAll.checked = false;
+            }
+
+            // if(flag){
+            //     chkAll.checked = false;
+            // }else{
+            //     chkAll.checked = true;
+            // }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
