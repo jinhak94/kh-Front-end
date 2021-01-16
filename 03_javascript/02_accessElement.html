@@ -204,6 +204,18 @@
     <!-- 자바스크립트의 this는 악명이 높다. 어디서 사용되냐에 따라 다르다. -->
     <!-- 매개변수로 받기 -->
     <script>
+        function addClass(subjects){
+            for(var i = 0; i < subjects.length; i++){
+                subjects[i].parentElement.classList.add("subject-checked");
+                subjects[i].parentElement.classList.add("font");
+            }
+        }
+
+        function removeClass(subjects){
+            for(var i = 0; i < subjects.length; i++){
+            subjects[i].parentElement.classList.remove("subject-checked")
+            }
+        }   
 
         function checkSubject(subject){
             //부모td에 클래스값 부여하기
@@ -215,9 +227,11 @@
             if(subject.checked)
             // className을 문자열로 처리하기 때문에, 아래에 적지 않으면 전부 날라가버린다.
             // 따라서 모두 적어줄 필요가 있음.
-                parentTd.className = 'subject-checked font';
+                // parentTd.className = 'subject-checked font';
+                addClass(subject);
             else
-                parentTd.className = 'font';
+                // parentTd.className = 'font';
+                removeClass(subject);
 
             //개별체크박스 전체선택여부확인후 #checkAll에 반영하기
             var subjects = document.getElementsByName("subject");
@@ -242,7 +256,8 @@
 
                 // ClassList가 뭔지 공부하고, 어떻게 개선해야 하는지 확인하기. 
                 //2. 체크박스별 부모td 클래스값 제어
-                subjects[i].parentElement.className = chkAll.checked ? "subject-checked font" : "font";
+                // subjects[i].parentElement.className = chkAll.checked ? "subject-checked font" : "font";
+                chkAll.checked ? addClass(subjects) : removeClass(subjects);
             }
         }
 
