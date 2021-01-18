@@ -293,6 +293,76 @@
             // }
         }
     </script>
+
+    <p>@실습문제 : classList 속성을 이용해서 코드를 개선하세요.</p>
+    <h2>classList</h2>
+    <p>tag element의 className 속성을 제어할 수 있는 함수를 가진 속성
+    </p>
+    <ul>
+        <li><input type="button" value="add" onclick="add();"></li>
+        <li><input type="button" value="remove" onclick="remove();"></li>
+        <li><input type="button" value="toggle" onclick="toggle();"></li>
+        <li><input type="button" value="contains" onclick="testContains();"></li>
+    </ul>
+    <div id="test" class="border font">안녕하세요</div>
+    <style>
+        .border{
+            border: 1px solid black;
+        }
+        .bg-color{
+            background-color: springgreen;
+        }
+    </style>
+    <script>
+    function add(){
+        var test = document.getElementById("test");
+        test.classList.add("bg-color");
+        console.dir(test);
+    }
+    function remove(){
+        var test = document.getElementById("test");
+        test.classList.remove("bg-color");
+    }
+    function toggle(){
+        var test = document.getElementById("test");
+        test.classList.toggle("bg-color");
+    }
+    function testContains(){
+        var test = document.getElementById("test");
+        alert(test.classList.contains("bg-color"));
+    }
+    </script>
+
+    <h2>querySelector | querySelectorAll </h2>
+    <input type="button" value="querySelector" onclick="test5();">
+    <input type="button" value="querySelectorAll" onclick="test6();">
+    <hr>
+
+    <p class="foo">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat deleniti excepturi delectus modi accusamus officiis nam quaerat odio quasi sunt architecto eius nulla, maxime facilis tempora, earum reiciendis, laudantium illo.</p>
+    <p class="foo" id="myp">Harum velit blanditiis corporis enim, reprehenderit id eius, quasi iure asperiores hic beatae voluptates excepturi. Ducimus beatae officia perspiciatis alias sint enim voluptatem, cupiditate voluptas quas, voluptatum maiores labore maxime?</p>
+    <p class="foo">Dicta eum unde odit quia similique. Quidem repudiandae minima amet ad earum rem quis. Magnam soluta est accusamus fugiat nobis blanditiis quisquam fuga velit nam? Vero tenetur dolor qui dicta.</p>
+
+    <script>
+        function test5(){
+            //css 선택자를 통해 단하나의 요소를 리턴
+            //var p = document.querySelector("#myp");
+            var p = document.querySelector(".foo");
+            //위와 같이 선택하면, 
+            //일치하는 것의 제일 첫 번째 것을 리턴받는다.
+            console.log(p);
+            p.style.color = "hotpink";
+        }
+
+        function test6(){
+            var pArr = document.querySelectorAll(".foo");
+            console.log(pArr);
+            for(var i = 0; i < pArr.length; i++){
+                pArr[i].style.color="green";
+            }
+        }
+    </script>
+
+
 </body>
 </html>
 

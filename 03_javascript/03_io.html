@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO</title>
+</head>
+<body>
+    <h1>사용자입출력</h1>
+
+    <input type="button" value="경고장" onclick="alert('안녕');">
+    <input type="button" value="콘솔출력" onclick="console.log('Hello World');">
+    <input type="button" value="사용자확인" onclick="test1();">
+    <input type="button" value="사용자문자열입력" onclick="test2();">
+
+    <script>
+        function test1(){
+            //사용자 확인이 필요한 경우
+            var bool = confirm("삭제하시겠습니까?");
+            console.log(bool);
+
+            if(bool)
+                alert("파일을 삭제했습니다.");
+            else
+                alert("파일 삭제를 취소했습니다.");
+        }
+
+        function test2(){
+            var name = prompt('이름을 입력하세요.');
+            console.log(name);
+
+            //null이 리턴된 경우(사용자 취소)
+            if(name == null){
+                alert("이름 입력을 취소하셨습니다.");
+            }
+            //정상적으로 입력된 경우(확인)
+            else if(name != ''){
+                alert("당신의 이름은 " + name + "입니다.")
+            }
+            //빈 문자열이 입력된 경우(확인)
+            else if(name == ''){
+                alert("이름을 입력해주세요.");
+            }
+            
+        }
+    </script>
+
+    <h2>태그 컨텐츠 작성하기 | 가져오기</h2>
+    <input type="button" value="작성" onclick="test3();">
+    <input type="button" value="작성" onclick="test4();">
+    <br><br>
+
+    <div class="area" id="result"></div>
+    <div class="area" id="another"></div>
+
+<script>
+        function test3(){
+            //innerText - 제공된 문자열을 단순 텍스트로 처리. html태그 무시
+            //innerHTML - 제공된 문자열을 HTML 태그로 처리. 
+            var txt = "<mark>눈</mark>이 왔습니다.";
+            // result.innerText = txt;
+            result.innerHTML = txt;
+        }
+
+        function test4(){
+            // innerText - html태그를 제외하고 컨텐츠를 가져온다. 
+            // innerHTML - html태그 포함해서 컨텐츠를 가져온다.
+            // alert(result.innerText);
+            another.innerHTML = result.innerHTML;
+
+            console.dir(result);
+        }
+    </script>
+
+    <style>
+        .area{
+            width: 300px;
+            min-height: 200px;
+            border: 1px solid #000;
+            background-color: skyblue;
+            padding: 3px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+
+</body>
+</html>
