@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Object Array</title>
+    </head>
+    <body>
+        <h1>객체배열</h1>
+        <input type="button" value="실행" onclick="test1();">
+        <script>
+            /**
+   * 여러 객체를 배열에 담아 관리
+   */
+            function test1() {
+                var pet1 = {
+                    name: '구리구리',
+                    breed: '푸들',
+                    weight: 4,
+                    age: 10
+                };
+                var pet2 = {
+                    name: '까미',
+                    breed: '요크셔테리어',
+                    weight: 3.5,
+                    age: 15
+                };
+                var pet3 = {
+                    name: '사랑이',
+                    breed: '코카스파니엘',
+                    weight: 13,
+                    age: 4
+                };
+
+                // var arr = [pet1, pet2, pet3];
+                var arr = [];
+                arr.push(pet1);
+                arr.push(pet2);
+                arr.push(pet3);
+
+                //객체별로 메소드 추가
+                for (var i in arr) {
+                    arr[i].bark = function () {
+                        if (this.weight > 7) 
+                            console.log(this.name + "이/가 멍멍 짖습니다.");
+                        else 
+                            console.log(this.name + "이/가 왈왈 짖습니다.");
+                        };
+                    
+                    //toString override
+                    arr[i].toString = function(){
+                        return "{name = " + this.name + ", breed = " + this.breed 
+                            + ", age = " + this.age + ", weight = " + this.weight + "}"; 
+                    }
+                }
+
+                //객체별 bark메소드 호출
+                for (var i in arr) 
+                    arr[i].bark();
+       
+                //객체별 문자열 출력
+                //원하는 속성값 출력을 위해 toString overriding 해야 함. 
+                for(var i in arr)
+                    console.log(i + " : " + arr[i]);
+
+
+
+                console.log(arr);
+            }
+        </script>
+
+        
+    <h2>생성자함수</h2>
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+        /**
+         * new 키워드와 함께 객체를 생성할 수 있는 함수
+         * 관례상 함수명은 대문자로 시작한다.
+         */ 
+        function test2(){
+            // var pet1 = {
+            //     name : '구리구리',
+            //     breed : '푸들',
+            //     weight : 4,
+            //     age : 10,
+            //     bark : function(){
+            //     if(this.weight > 7)
+            //         console.log(this.name + "이/가 멍멍 짖습니다.");
+            //     else
+            //         console.log(this.name + "이/가 왈왈 짖습니다.");
+            //     },
+            //     toString : function(){
+            //     return "{name = " + this.name + ", breed = " + this.breed 
+            //         + ", age = " + this.age + ", weight = " + this.weight + "}";
+            //     }
+            // };
+            var pet1 = new Pet("구리구리", "푸들", 10, 4);
+            console.log(pet1);
+            pet1.bark();
+            console.log(pet1.toString());
+
+            var arr = [
+                new Pet("구리구리", "푸들", 10, 4),
+                new Pet("까미", "요크셔테리어", 13, 3.5),
+                new Pet("사랑이", "코카스파니엘", 4, 13)
+            ];
+
+            for(var i in arr)
+                arr[i].bark();
+
+            //생성자함수는 일반함수처럼 사용하지 않도록 주의해야 한다.
+            //일반 함수에서의 this는 window 객체를 가리킴.
+            //따라서 일반함수 안에서 this는 window를 참조하므로
+            //new 키워드를 사용해서 객체를 생성하지 않으면
+            //window속성으로 등록이 된다.
+            var p = new Pet("사랑이", "코카스파니엘", 4, 13);
+            console.log(p);
+            console.log(typeof(p));
+        
+            for(var i in arr){
+                console.log(arr[i]);
+            }
+        }
+
+        /**
+         * 자바는 클래스 기반으로 부모 자식을 나누지만,
+         * 자바스크립트의 경우, 
+         * 객체의 부모 타입을 프로토타입이라고 한다. 
+         * 
+         * 
+         */ 
+
+        /**
+         * Pet 생성자함수
+         * 
+         * 생성자함수(new연산자로 호출된 경우) 안에서
+         * this는 현재 객체를 참조한다. 
+         * 
+         * javascript는 prototype 기반의 객체모델을 제공한다.
+         * prototype 객체가 바로 부모객체이다.
+         * 객체별 공통된 코드는 prototype에서 관리하는 것이 메모리 효율적이다.
+         */  
+        function Pet(name, breed, age, weight){
+            this.name = name;
+            this.breed = breed;
+            this.age = age;
+            this.weight = weight;
+
+            // this.bark = function(){
+            //     if(this.weight > 7)
+            //         console.log(this.name + "이/가 멍멍 짖습니다.");
+            //     else
+            //         console.log(this.name + "이/가 왈왈 짖습니다.");
+            //     },
+            //     this.toString = function(){
+            //     return "{name = " + this.name + ", breed = " + this.breed 
+            //         + ", age = " + this.age + ", weight = " + this.weight + "}";
+            // }
+        }
+
+        //prototype : Pet의 부모객체
+        //중복된 함수는 작성하고, Pet객체에서 참조하게 한다.
+        Pet.prototype.bark = function(){
+                if(this.weight > 7)
+                    console.log(this.name + "이/가 멍멍 짖습니다.");
+                else
+                    console.log(this.name + "이/가 왈왈 짖습니다.");
+        };
+        Pet.prototype.toString = function(){
+                return "{name = " + this.name + ", breed = " + this.breed 
+                + ", age = " + this.age + ", weight = " + this.weight + "}";
+        };
+
+    </script>
+    </body>
+</html>

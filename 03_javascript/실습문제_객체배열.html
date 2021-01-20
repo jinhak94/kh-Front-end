@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@실습문제_객체배열</title>
+    <style>
+        img{
+            width: 500px;
+            margin: 10px 0;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>학생 객체 관리</h1>
+    <img src="/images/실습문제_객체_성적테이블.png" alt="">
+
+    <input type="button" value="실행1" onclick="test1();">
+    <input type="button" value="실행2" onclick="test2();">
+    <script>
+
+        /**
+         * 생성자 함수 이용버젼
+         * (공통된 코드는 prototype객체를 이용할 것)
+         */ 
+
+        function test2(){
+            var arr = [
+                new Person('김동현',90,56,56,45,34),
+                new Person('홍길동',45,76,34,33,56),
+                new Person('유관순',76,34,54,56,22)
+            ];
+
+            for(var i in arr){
+                arr[i].getSum();
+                arr[i].getAvg();
+                console.log(arr[i].toString());
+            }
+        }
+
+        function Person(name, java, oracle, html5, css3, javascript){
+            this.name = name;
+            this.java = java;
+            this.oracle = oracle;
+            this.html5 = html5;
+            this.css3 = css3;
+            this.javascript = javascript;
+        }
+
+        Person.prototype.getSum = function(){
+                    return this.java + this.oracle + this.html5 + this.css3 + this.javascript;
+        };
+        Person.prototype.getAvg = function(){
+                    return Math.round(this.getSum() / 5 * 10) / 10;
+        };
+        Person.prototype.toString = function(){
+                    return "이름=" + this.name + ", java= " + this.java + ", oracle=" + 
+                    "html5=" + this.html5 + "css3 = " + this.css3 + ", javascript=" + this.javascript + 
+                    ", 총점=" + this.getSum() + ", 평점=" + this.getAvg();
+        };
+
+        /**
+         * 주어진 정보(3명)의 점수, 총점, 
+         * 평균(반올림 소수점 첫째자리)을 출력.
+         */
+        function test1(){
+            var person1 = {
+                name:"김동현",
+                java:90,
+                oracle:56,
+                html5:56,
+                css3:45,
+                javascript:34
+            }
+            var person2 = {
+                name:"홍길동",
+                java:45,
+                oracle:76,
+                html5:34,
+                css3:33,
+                javascript:56
+            }
+            var person3 = {
+                name:"유관순",
+                java:76,
+                oracle:34,
+                html5:54,
+                css3:56,
+                javascript:22
+            }
+
+            var arr = [];
+            arr.push(person1);
+            arr.push(person2);
+            arr.push(person3);
+            // arr = [person1, person2, person3];
+
+            // for(var i in arr){
+                
+            //     arr[i].toString = function(){
+            //         var tot = this.java + this.oracle + this.html5 + this.css3 + this.javascript;
+            //         var avg = tot/5.0;
+            //         return "이름=" + this.name + ", java=" + this.java +
+            //         ", oracle=" + this.oracle + ", html5" + this.html5 +
+            //         ", css3=" + this.css3 + ", javascript=" + this.javascript 
+            //         + ", 총점=" + tot + ", 평점=" + avg;
+            //     };
+            // }
+
+            for(var i in arr){
+                arr[i].getSum = function(){
+                    return this.java + this.oracle + this.html5 + this.css3 + this.javascript;
+                };
+                arr[i].getAvg = function(){
+                    return Math.round(this.getSum() / 5 * 10) / 10;
+                };
+                arr[i].toString = function(){
+                    return "이름=" + this.name + ", java= " + this.java + ", oracle=" + 
+                    "html5=" + this.html5 + "css3 = " + this.css3 + ", javascript=" + this.javascript + 
+                    ", 총점=" + this.getSum() + ", 평점=" + this.getAvg();
+                };
+            }
+
+            for(var i in arr){
+                console.log(i + ":" + arr[i].toString());
+            }
+        } 
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
