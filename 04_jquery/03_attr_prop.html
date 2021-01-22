@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attr | prop</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+        img{
+            width: 400px;
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>attr</h1>
+    <input type="button" value="실행" id="btn1">
+    <br>
+    <img src="images/flower1.PNG" alt="">
+    <img src="images/flower2.PNG" alt="">
+    
+    <script>
+        /**
+         * attr은 문서객체에 "작성된 속성값"을 가져오거나, 세팅할 수 있다.
+         */ 
+    
+        btn1.onclick = function(){
+            var $imgs = $("img");
+            console.log($imgs);
+            console.log($imgs[0]); //jquery 객체가 아닌 tag element 객체(vanila js) 
+            //위처럼 인덱스로 참조하게 되면, jquery가 아닌 javascript이다.
+            //$imgs[0].attr('src'); // 따라서 왼쪽의 경우, javascript에는 attr이 없으므로 오류가 난다.
+            console.log($imgs.eq(0)); //eq(index)는 jquery 객체를 리턴
+        
+            //getter
+            console.log($imgs.eq(0).attr('src')); // 요소를 꺼내서 쓰고 싶다면, eq를 써야한다. jQuery 객체를 리턴함.
+            console.log($imgs.eq(0).attr('alt'));
+            console.log($imgs.eq(0).attr('id')); // 작성되지 않은 속성에 대해서는 undefined
+
+            //setter
+            $imgs.eq(1)
+                .attr('src', 'images/flower3.PNG')
+                .attr('title', '아름다운 꽃');
+                //mouseover시 tooltip 메세지
+
+            //setter로 사용시 복수 태그요소의 속성값 변경
+            $imgs.attr('src', 'images/flower4.PNG');
+
+        };
+        
+    </script>
+
+    <h1>prop</h1>
+    <fieldset>
+        <legend>분식메뉴</legend>
+        <input type="checkbox" id="chkAll"><label for="chkAll">전체선택</label>
+
+        <!-- (input:checkbox[name=menu]+label)*3 -->
+        <input type="checkbox" name="menu" id="hotdog" value="핫도그" checked="true"><!-- checked만 써도 같음 -->
+        <label for="">핫도그</label>
+        <input type="checkbox" name="menu" id="pizza" value="피자">
+        <label for="">피자</label>
+        <input type="checkbox" name="menu" id="churros" value="츄로스">
+        <label for="">츄로스</label>
+    </fieldset>    
+    <input type="button" value="확인" id="btn6" style="margin:10px 0;">
+    <input type="button" value="checked" id="btn7">
+    <input type="button" value="비교" id="btn8">
+
+    <script>
+        $("#btn8").click(function(){
+            var $hotdog = $("#hotdog");
+            console.log("attr : " + $hotdog.attr("checked"));
+            console.log("prop : " + $hotdog.prop("checked"));
+            //attr은 checked가 실제로 속성이 있는지 확인.
+            //prop은 자바스크립트적 처리를 해줌.
+        });
+
+        /**
+         * : checked Pseudo선택자(가상선택자)
+         *    체크되어있는 체크박스만 골라낼 수 있음.
+         */ 
+        $("#btn7").click(function(){
+            //현재 체크된 요소를 가진 jquery객체
+            $("[name=menu]:checked").each(function(index,elem){
+                console.log(elem);
+            });
+        });
+
+        /**
+         * click나 change나 똑같다.
+         * 
+         * 전체선택/해제처리
+         */ 
+        $("#chkAll").change(function(e){
+            // var $target = $(e.target);
+            // 위와 동일
+            var $target = $(this); //이벤트핸들러함수 안의 this는 이벤트발생객체이다.
+            console.log($target.prop('checked'));
+
+            //setter
+            $("[name=menu]").prop("checked", $target.prop('checked'));
+        });
+
+        $('#btn6').click(function(e){
+            //jquery 객체 안의 요소 순회
+            var str = "";
+
+            $("[name=menu]").each(function(index, elem){
+                //매 요소마다 callbackFunction 실행 :  
+                //   해당 index, 요소가 인자로 전달됨.
+                // console.log(index);
+                // console.log(elem);
+                console.log($(elem).prop('checked'));
+                if($(elem).prop('checked')){
+                    str += $(elem).val() + " ";
+                }
+            });
+
+            //false면 실행하는 짧은 조건문
+            str == "" || alert(str);
+            
+        });
+        /**
+         * jquery 방식의 event handler binding
+         *      - callbackFunction의 첫번째 인자는 해당 event 객체
+         * 
+         * prop 메소드는 속성값을 true/false로 처리한다.
+         *      - tag element 객체 속성에 대한 제어
+         *      - getter
+         *      - setter
+         */ 
+         $("[name=menu]").change(function(e){
+            // console.log(e.target);
+            // 현재 이벤트가 발생한 요소의 check 여부 가져오기
+            console.log(e.target.checked);//vanilla js 방식
+
+            var $target = $(e.target); // jquery방식 : 
+            //js객체 -> jquery객체(jquery 메소드를 쓰기 위해서)
+            console.log($target.prop('checked'));
+        });
+    </script>
+    
+    <h2>Pseudo 가상선택자</h2>
+    <div class="box">
+        <!-- ul>li{테스트$}*3 -->
+        <ul>
+            <li>테스트1</li>
+            <li>테스트2</li>
+            <li>테스트3</li>
+            <li><a href="#">테스트4</a></li>
+        </ul>
+    </div>
+    <input type="button" value="순서" id="btn9">
+    <!-- 함수형태의 선택자 -->
+    <input type="button" value="eq()" id="btn9">
+    <input type="button" value="lt()" id="btn9">
+    <input type="button" value="gt()" id="btn9">
+    <script>
+        $("#btn9").click(function(){
+            console.log($(".box li"));
+            // $(".box li:first").css("color", "orangered");
+            // $(".box li:last").css("color", "orangered");
+            // $(".box li:odd").css("color", "orangered");
+            $(".box li:even").css("color", "orangered");
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+

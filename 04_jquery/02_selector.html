@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            console.log("hello~");
+        })
+    </script>
+</head>
+<body>
+    <h1>선택자</h1>
+    <div class="wrap">
+        <p class="group1">테스트1</p>
+        <p class="group1">테스트2</p>
+        <p id = "p3">테스트3</p>
+        <div class="container">
+            <p class="group2">테스트4</p>
+            <p class="group2">테스트5</p>
+        </div>
+    </div>
+    <input type="button" value="tag" id="btn1">
+    <input type="button" value="class" id="btn2">
+    <input type="button" value="id" id="btn3">
+    <input type="button" value="parent child" id="btn4">
+    <input type="button" value="parent > child" id="btn5">
+
+    <script>
+
+        btn5.addEventListener('click', function(){
+            //.wrap 직계자식 p
+            // $(".wrap > p").css("letter-spacing", "50px");
+            $(".wrap > p").css("border", "1px solid blue");
+        });
+
+        btn4.addEventListener('click', function(){
+            //.wrap 하위의 모든 p
+            // $(".wrap p").css("text-decoration", "underline");
+            // $(".wrap p").css("border", "1px solid green");
+            //아래와 같이 객체로 전달할 수도 있다.
+            // '-'이 포함된 css 속성명은 문자열로 처리할 것.
+            $(".wrap p").css({
+                color : "red",
+                'text-decoration' : "underline"
+            });
+        });
+
+        btn3.addEventListener('click', function(){
+            $("#p3").css("border", "1px solid red");
+        });
+
+        btn2.onclick=function(){
+            $(".group1").css("background-color", "springgreen");
+            $(".group2").css("background-color", "yellow");
+
+            //method chaining
+            //함수의 결과로 동일한 객체를 리턴해줌
+            var $group2 = $(".group2");
+            console.log($group2);
+            // console.log($(".group2").css("color", "orange"));
+            $(".group2")
+                .css("color", "orange")
+                .css("font-size", "24px");
+        };
+
+
+    /**
+     * $("css선택자")
+     */ 
+    btn1.onclick=function(){
+            // jQuery 변수는 일반 변수와 구별하기 위해 $를 많이 붙인다.
+            var $pArr = $("p");
+            console.log($pArr); // jquery객체 : JQuery.fn.init(5) [p.group1, p.group1, p#p3, p.group2, p.group2, prevObject: jQuery.fn.init(1)]
+            //jQuery 객체에 css 적용시, 각 요소에 모두 자동적으로 적용이 된다.
+            //배열에 직접 적용해도 모든 요소에 모두 적용이 된다.
+            $pArr.css("color", "hotpink");
+
+            //vanilla js
+            var arr = document.querySelectorAll("p");
+            // for(var i in arr){ 유사배열이므로 for in문 못 씀
+            for(var i = 0; i<arr.length; i++){
+                arr[i].style.backgroundColor = "navy";
+            }
+        };
+    </script>
+</body>
+</html>
