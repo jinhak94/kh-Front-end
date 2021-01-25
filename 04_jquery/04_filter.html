@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+    <script src="js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <h1>Filter</h1>
+    <div class="wrap">
+        <!-- div.wrap>p.test{테스트$}*5 -->
+        <p class="test">테스트1</p>
+        <p class="test">테스트2</p>
+        <p class="test">테스트3</p>
+        <p>테스트4</p>
+        <p class="test">테스트5</p>
+    </div>
+    <input type="button" value="실행" id="btn1">
+    <input type="button" value="first(selector)" id="btn2">
+    <input type="button" value="last()" id="btn3">
+    <input type="button" value="eq(index)" id="btn4">
+    <input type="button" value="not(selector)" id="btn5">
+    <script>
+        /**
+         * eq(index)
+         * 0-based iindex 
+         */
+        $(btn2).click(function(){
+            $(".wrap p")
+            .first()
+            .css({
+                "color" : "hotpink",
+                "font-size" : "1.5em"
+            });
+        })
+        $(btn3).click(function(){
+            $(".wrap p")
+            .last()
+            .css({
+                "color" : "springgreen",
+                "font-size" : "1.5em"
+            });
+        })        
+        $(btn4).click(function(){
+            $(".wrap p")
+            .eq(2)
+            .css({
+                "color" : "seagreen",
+                "font-size" : "1.5em"
+            });
+        })        
+        /**
+         * not(선택자)
+         */ 
+        $(btn5).click(function(){
+            $(".wrap p")
+            .not('.test')
+            .css({
+                "color" : "lightsalmon",
+                "font-size" : "1.5em"
+            });
+        })
+        /**
+         * filter(선택자)
+         */ 
+        $(btn1).click(function(){
+            // $(".wrap p").filter(":even").css('color','hotpink');
+        
+        var $p = $(".wrap p");
+        //$p 하위의 .test 요소만
+        // $p.filter(".test").css('text-decoration','underline');
+
+        //$p 하위의 .test가 아닌 요소만
+        // $p.filter(":not(.test)").css('color','red');
+
+        //callbackFunction 전달 : true를 리턴한 요소만 선별
+        $p.filter(function(index, elem){
+            return index % 2 != 0; // 홀수에 대해서 css 적용
+        }).css('font-size','2em');
+
+    });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

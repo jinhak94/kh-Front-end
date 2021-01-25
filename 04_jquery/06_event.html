@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.5.1.js"></script>
+    <!-- js 순서는 항상 위에꺼 먼저,, 
+    직접 만든 js파일이 위의 js 파일 참조하는 경우에 -->
+    <script src="js/myjs.js"></script>
+    <title>Event</title>
+    <style>
+        .outer{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            padding: 50px;
+        }
+        .inner {
+            width: 100%;
+            height: 100%;
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event</h1>
+    <h2>마우스 관련</h2>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+    <input type="button" value="mouseenter | mouseleave" id="btn1">
+    <input type="button" value="mouseover | mouseout" id="btn2">
+    <input type="button" value="hover" id="btn3">
+    <script>
+    /**
+     * hover
+     *      mouseenter, mouseleave 이벤트핸들러를 동시에 바인딩하는 함수
+     *      실제로 hover 이벤트는 없음
+     */
+    $(btn3).click(function(){
+        $(".outer")
+            .hover(function(){
+                // mouseenter
+                // this는 이벤트 발생 객체이다. event.target
+                $(this).css("border", "2px solid #000");
+            }, function(){
+                // mouseleave
+                $(this).css("border", "none");
+            });
+    });
+
+    /**
+     * mouseover | mouseout
+     *      자식요소에 대해서 event handling 한다.
+     */
+    $(btn2).click(function(){
+        $(".outer")
+            .mouseover(function(){
+                console.log("mouseover!");
+            })
+            .mouseout(function(){
+                console.log("mouseout!");
+            });
+    });
+    
+    /**
+     * mouseenter | mouseleave
+     *      자식요소에 대해서는 event handling 하지 않음..
+     */ 
+    $(btn1).click(function(){
+        $(".outer")
+            .mouseenter(function(){
+                console.log("mouseenter!");
+            })
+            .mouseleave(function(){
+                console.log("mouseleave!");
+            });
+        });
+    </script>
+
+    <h2>키보드 관련</h2>
+    <input type="text" id="userInput">
+    <script>
+    /**
+     * keydown - keypress - keyup 순으로 이벤트 발생
+     */ 
+    $(userInput).keyup(function(e){
+        console.log(e.key);     
+        if(e.keyCode == 13){
+            alert($(this).val()); //getter
+            $(this).val('');//setter
+        }       
+    });
+    </script>
+
+    <h2>submit관련</h2>
+    <!-- action에 javascipt 코드 넣으면, 자바스크립트가 실행된다. -->
+    <form action="javascript:alert('제출성공!');" id="memoFrm">
+        <fieldset>
+            <legend>메모</legend>
+            <p><span id="counter">0</span>/50</p>
+            <textarea name="memo" id="memo" cols="30" rows="10"></textarea>
+            <br>
+            <input type="submit" value="제출">
+        </fieldset>
+    </form>
+
+    <script>
+        /**
+         * form submit 이벤트
+         * 실제 제출이 일어나기 전에 먼저 일어남.
+         * submit이벤트 이후 제출성공!
+         */
+        $("#memoFrm").submit(function(e){
+            // alert("submit이벤트!");
+            // #memo의 글자수 검사
+            var $memo = $(memo);
+            if($memo.val().length > 50){
+                alert('글자수 초과입니다');
+                // return false;
+                // return false;하거나 preventDefault() 사용
+                e.preventDefault();
+            }
+            // return true;
+        });
+    </script>
+
+    <!-- js : value, innerHTML, innerText -->
+    <!-- jquery : val() | val(123)
+        html() | html('<h1></h1>')
+        text() | text('abcde');
+    
+    js : obj -> jquery : $(obj)  -->
+    <script>
+    /**
+     * 글자수 체크
+     */ 
+    $(memo).keyup(function(e){
+        var $this = $(this);
+        // var $this = $(e.target); 위와 동일
+        var len = $this.val().length;
+        var $counter = $("span#counter");
+        $counter.html(len); //innerHTML -> html(),
+                            //innerText -> text()
+        // if(len>50)
+        //     $(counter).css('color','red');
+        // else
+        //     $(counter).css('color','black');
+        $counter
+            .html(len)
+            .css("color", len>50 ? "red" : "black");
+    });
+    </script>
+
+    <h2>on | off</h2>
+    <input type="button" value="실행" id="btn4">
+    <script>
+        /**
+         * on('이벤트명', callbackFunction)
+         * off('이벤트명')
+         * 
+         * bind | unbind는 deprecated! 대신 on | off를 사용할 것.
+         */
+        $(btn4).on('click', function(){
+            console.log("#btn4을 클릭하셨습니다.");
+
+            //이벤트 발생 객체 this, event.target
+            $(this).off('click');
+        });
+    </script>
+
+    <h2>event bubbling을 이용해 on으로 처리하기</h2>
+    <div class="container">
+        <p>이벤트1</p>
+        <p>이벤트2</p>
+        <p>이벤트3</p>
+        <p>이벤트4</p>
+        <p>이벤트5</p>
+    </div>
+    <div class="wrapper">
+        <h2>안녕</h2>
+    </div>
+    <script>
+    var cnt = 0;
+    $(".wrapper").on('click', 'h2'/* 자식요소 */, function(){
+        $(".wrapper").append("<h2>안녕" + (++cnt) + "</h2>");
+    })
+    // $(".wrapper h2").on('click', function(){
+    //     var $wrapper = $(".wrapper");
+    //     $wrapper.append("<h2>안녕" + (++cnt) + "</h2>"); 
+    //                        //자식요소로 맨 밑에 추가.
+                           //기존요소 유지
+        
+    // });
+    
+    /**
+     * 자식요소 p태그에서 발생한 click 이벤트가 버블링되어
+     *  .container에 전달되고, 이벤트 핸들링 된다.
+     */ 
+    $(".container").on('click','p',function(){
+        console.log("클릭이벤트 발생");
+        console.log(this);
+    });
+    </script>
+
+    <h2>trigger</h2>
+    <div class="trg-container" style="border: 1px solid black; margin-bottom:10px;">
+        <h1>0</h1>
+        <h1>0</h1>
+    </div>
+    <input type="button" value="증가" id="btn5">
+    <script>
+        var cnt = 0;
+        $(".trg-container").click(function(){
+            // $("h1",this).eq(1)
+            $(this).find('h1').eq(1)
+                //기준이 될 부모요소를 두 번째 인자로 전달.
+                //this(.trg-container) 하위의 h1 조회
+                .html(++cnt);
+        });
+
+        $(btn5).click(function(){
+            //$(".trg-container")의 click event handler를 실행
+            //위의 코드를 호출
+            $(".trg-container").trigger('click');
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
