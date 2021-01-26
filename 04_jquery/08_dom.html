@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+        .area{
+            background-color: lightskyblue;
+            border: 2px solid black;
+            padding: 5px;
+            margin : 10px;
+            min-height: 50px;
+        }
+        .add{
+            color: palegreen;
+        }
+        .original, .result{
+            border: 1px solid gray;
+            padding: 5px;
+            margin: 10px 0;
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: 1px solid #000;
+        }
+        .lime{
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM</h1>
+    <h2>요소추가</h2>
+    <input type="button" value="실행" id="btn1">
+    <div class="area" id="area1"></div>
+    <script>
+        $(btn1).click(function(){
+            var $area1 = $(area1);
+            $area1.html("<p>안녕</p>"); //p태그 문자열 추가
+
+            var $p = $("<p>여보세요</p>");
+            $area1.append($p);
+            //html과 append는 새로 쓰느냐,
+            //기존 요소를 유지하고 뒤에 쓰느냐 차이
+            var pElem = document.createElement("p");
+            pElem.appendChild(document.createTextNode("ㅋㅋㅋ"));
+            $area1.append(pElem);
+        });
+    </script>
+
+    <h2>삽입1</h2>
+    <p>추가할 요소 기준으로 메소드 호출</p>
+    <input type="button" value="appendTo" id="btn2">
+    <input type="button" value="prependTo" id="btn3">
+    <input type="button" value="insertAfter" id="btn4">
+    <input type="button" value="insertBefore" id="btn5">
+
+    <br>
+    <!-- (h1#test$>span{A})*4 -->
+    <h1 id="test1"><span>A</span></h1>
+    <h1 id="test2"><span>A</span></h1>
+    <h1 id="test3"><span>A</span></h1>
+    <hr>
+    <h1 id="test4"><span>A</span></h1>
+    <script>
+
+        /**
+         * $(B).insertBefore($(A)
+         *      B를 A의 형제요소로 앞에 추가
+         * */ 
+         (function(){
+            var code = 66;
+            $(btn5).click(function(){
+                var $add = $("<span class='add'>" + 
+                    String.fromCharCode(code++) + "</span>");
+                    $add.insertBefore($(test4));
+                });
+        })();
+
+        /**
+         * $(B).insertAfter($(A)
+         *      B를 A의 형제요소로 뒤에 추가
+         * */ 
+         (function(){
+            var code = 66;
+            $(btn4).click(function(){
+                var $add = $("<span class='add'>" + 
+                    String.fromCharCode(code++) + "</span>");
+                    $add.insertAfter($(test3));
+                });
+        })();
+
+        /**
+         * $(B).prependTo($(A)
+         *      B를 A의 자식요소로 처음에 추가, 기존요소 앞
+         * */ 
+        (function(){
+            var code = 66;
+            $(btn3).click(function(){
+                var $add = $("<span class='add'>" + 
+                    String.fromCharCode(code++) + "</span>");
+                    $add.prependTo($(test2));
+                });
+        })();
+
+        /**
+         * $(B).appendTo($(A))
+         *      B를 A의 자식요소로 마지막에 추가
+         */
+        /**
+         *  $(B).appendTo($(A)) 
+         *    B를 A의 자식요소로 마지막에 추가. 기존요소 뒤
+         */
+        (function(){
+            var code = 66;//B
+            $(btn2).click(function(){
+            //String.fromCharCode : ascii code를 문자로 변환
+            var $add = $("<span class='add'>" + String.fromCharCode(code++) + "</span>");
+            $add.appendTo($(test1));
+            });
+        })();
+    </script>
+
+    <h2>삽입2</h2>
+    <p>기존요소 기준 메소드 호출</p>
+    <input type="button" value="append" id="btn6">
+    <input type="button" value="prepend" id="btn7">
+    <input type="button" value="after" id="btn8">
+    <input type="button" value="before" id="btn9">
+    <!-- (h1#test>span{A})*4 -->
+    <h1 id="test5"><span>A</span></h1>
+    <h1 id="test6"><span>A</span></h1>
+    <h1 id="test7"><span>A</span></h1>
+    <hr>
+    <h1 id="test8"><span>A</span></h1>
+
+    <script>
+
+        /**
+         * $(A).after(B)
+         *      A의 형제요소 B를 다음에 추가
+         */ 
+         (function(){
+            var code = 66;
+            $(btn8).click(function(){
+                var add = "<span class='add'>" + String.fromCharCode(code++) + "</span>";
+                $(test7).after(add);
+            });
+        })();
+
+        /**
+         * $(A).before(B)
+         *      A의 형제요소 B를 이전에 추가
+         */ 
+         (function(){
+            var code = 66;
+            $(btn9).click(function(){
+                var add = "<span class='add'>" + String.fromCharCode(code++) + "</span>";
+                $(test8).before(add);
+            });
+        })();
+
+        /**
+         * $(A).append(B)
+         *      A의 자식요소로 B를 마지막에 추가
+         */ 
+        (function(){
+            var code = 66;
+            $(btn6).click(function(){
+                var add = "<span class='add'>" + String.fromCharCode(code++) + "</span>";
+                $(test5).append(add);
+            });
+        })();
+
+        /**
+         * $(A).prepend(B)
+         *      A의 자식요소로 B를 처음에 추가
+         */ 
+         (function(){
+            var code = 66;
+            $(btn7).click(function(){
+                var add = "<span class='add'>" + String.fromCharCode(code++) + "</span>";
+                $(test6).prepend(add);
+            });
+        })();
+    </script>
+
+    <h2>clone | remove | detach | empty</h2>
+    <!-- input:button#btn$@10*4 -->
+    <input type="button" value="clone" id="btn10">
+    <input type="button" value="remove" id="btn11">
+    <input type="button" value="detach" id="btn12">
+    <input type="button" value="empty" id="btn13">
+
+    <div class="original">
+        <div class="item"></div>
+    </div>
+    <div class="result"></div>
+
+    <script>
+
+        /**
+         * empty
+         *  모든 자식요소를 제거
+         */
+        $(btn13).click(function(){
+            $(".original, .result").empty();
+        });
+
+        /**
+         * detach
+         * 삭제 : 삭제된 요소를 리턴, 이벤트 핸들링은 유지됨.
+         */ 
+        $(btn12).click(function(){
+            $(".item")
+            .detach()
+            .appendTo($(".result"));
+        });
+
+        /**
+         * remove
+         * 삭제 : 삭제된 요소를 리턴, 이벤트 핸들링은 제거됨.
+         */ 
+        $(btn11).click(function(){
+            $(".item")
+            .remove()
+            .appendTo($(".result"));
+        });
+
+
+        $(".item").hover(function(){
+            //mouseenter
+            $(this).toggleClass("lime");
+        }, function(){
+            //mouseleave
+            $(this).toggleClass("lime");
+        });
+        /**
+         * clone(eventHandling) 
+         *      요소 복제, 이벤트핸들링까지 복사할지 여부,
+         *      기본값은 false
+         */ 
+        $(btn10).click(function(){
+            var $copy = $(".item").clone();
+            $copy.appendTo($(".result"));
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

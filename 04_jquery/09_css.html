@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS</title>
+    <script src="js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <h1>CSS</h1>
+    <h2>show | hide</h2>
+    <input type="button" value="show" id="btn1">
+    <input type="button" value="hide" id="btn2">
+    <input type="button" value="toggle" id="btn3">
+    <br><br>
+    <img src="images/flower1.PNG" alt="" id="flower1">
+    <hr>
+    <script>
+        /**
+         * toggle
+         */ 
+        $(btn3).click(function(){
+            $(flower1).toggle(500, "swing", function(){
+                //완료후 처리 작업
+            });
+        })
+        /**
+         * hide
+         */ 
+        $(btn2).click(function(){
+            $(flower1).hide(2000 , "linear", function(){
+                alert("hide 작업 끝!");
+            });
+        });
+        /**
+         * show
+         */ 
+        // 마지막 인자는 callback함수(끝나고 실행할 함수)
+        $(btn1).click(function(){
+            $(flower1).show(1000, "swing", function(){
+                alert("show 작업 끝!");
+            });
+        });
+    </script>
+
+    <h2>fadeIn | fadeOut | fadeToggle | fadeTo</h2>
+    <input type="button" value="fadeIn" id="btn4">
+    <input type="button" value="fadeOut" id="btn5">
+    <input type="button" value="fadeToggle" id="btn6">
+    <br><br>
+    <img src="images/river1.PNG" alt="" id="river1">
+    <script>
+
+        /**
+         * 
+         */
+        $(btn6).click(function(){
+            $(river1).fadeToggle(1000, function(){
+                alert('toggle 완료!');
+            });
+        });
+
+        /**
+         * opacity(0:투명, ~ 1:붙루명), display 값을 조정해서
+         * 투명해지다가 화면에서 사라진다.
+         */ 
+        $(btn5).click(function(){
+            $(river1).fadeOut(1000);
+        });
+        $(btn4).click(function(){
+            $(river1).fadeIn(1000); 
+        });
+    </script>
+
+    <div class="img-container">
+        <img src="images/flower2.PNG" alt="">
+    </div>
+    <style>
+        .img-container{
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+        }
+        .img-container img{
+            width: 100%;
+            opacity: .7;
+            /* transform에 적용됨. fadeTo는 별개 */
+            transition-duration: .5s;
+        }
+    </style>
+    <script>
+        $(".img-container img").hover(function(){
+            $(this).fadeTo(200, 1) /* 0.2초 지정 */
+                   .css('transform', 'scale(1.1, 1.1');
+        },function(){
+            $(this).fadeTo(200, .7)
+                   .css('transform', 'scale(1,1)');
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
